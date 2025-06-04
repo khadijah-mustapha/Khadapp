@@ -1,31 +1,18 @@
-import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import React, { useState } from 'react';
+import { View, TextInput, Button, Text } from 'react-native';
 
-export default function TabOneScreen() {
+export default function ProfileScreen() {
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+    <View style={{ padding: 20 }}>
+      <Text>Name:</Text>
+      <TextInput placeholder="Email" placeholderTextColor="gray" value={name} onChangeText={setName} style={{ borderColor: 'black', borderWidth: 1, marginBottom: 10 }} />
+      <Text>Age:</Text>
+      <TextInput value={age} onChangeText={setAge} keyboardType="numeric" style={{  borderColor: 'black', borderWidth: 1, marginBottom: 10 }} />
+      <Button title="Update" onPress={() => alert(`Updated: ${name}, ${age}`)} />
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+};
